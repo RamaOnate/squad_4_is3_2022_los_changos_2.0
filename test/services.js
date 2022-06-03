@@ -13,7 +13,7 @@ describe('MongoDB server', () => {
   it('is connected', async function () {
     
     db.on('error', (error) => assertEqual(0,1))
-    db.on('open', () => assertEqual(1,1))
+    db.on('error', (error) => assertEqual(1,0))
 
   });
 
