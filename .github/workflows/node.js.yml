@@ -14,13 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgres:
+      mongo:
         image: mongo
         env:
           MONGO_INITDB_ROOT_USERNAME: mongodb
           MONGO_INITDB_ROOT_PASSWORD: mongodb
           MONGO_INITDB_DATABASE: mongodb
-        # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
