@@ -14,19 +14,20 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      mongodb:
-          image: mongo
-          env:
-            MONGO_INITDB_ROOT_USERNAME: mongodb
-            MONGO_INITDB_ROOT_PASSWORD: mongodb
-            MONGO_INITDB_DATABASE: mongodb
-          options: >-
-            --health-cmd mongo
-            --health-interval 10s
-            --health-timeout 5s
-            --health-retries 5
-          ports:
-            - 27017:27017
+      postgres:
+        image: mongo
+        env:
+          MONGO_INITDB_ROOT_USERNAME: mongodb
+          MONGO_INITDB_ROOT_PASSWORD: mongodb
+          MONGO_INITDB_DATABASE: mongodb
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 27017:27017
 
     strategy:
       matrix:
@@ -40,19 +41,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-
-    - name: Update npm
-      - run: npm install -g npm
-
+    - run: npm install -g npm
     - run: npm ci
-
-    - name: Install dependencies
-      - run: npm install
-
+    - run: npm install
     - run: npm run build --if-present
-
-    - name: Run smoke tests
-      - run: npm test
-
-    - name: Run BDD examples
-      - run: npx cucumber-js
+    - run: npm test
+    - run: npx cucumber-js
