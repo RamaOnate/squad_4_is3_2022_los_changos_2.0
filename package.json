@@ -15,6 +15,7 @@
     "express": "^4.15.2"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^8.2.2",
     "got": "^11.3.0",
     "tape": "^4.7.0"
   },
