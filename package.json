@@ -8,17 +8,22 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha"
+    "test": "mocha",
+    "devStart": "nodemon index.js"
   },
   "dependencies": {
+    "body-parser": "^1.20.0",
     "ejs": "^3.1.5",
     "express": "^4.15.2",
     "mocha": "^10.0.0",
+    "mongoose": "^6.3.5",
     "pg": "^8.7.3"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^8.2.2",
+    "dotenv": "^16.0.1",
     "got": "^11.3.0",
+    "nodemon": "^2.0.16",
     "tape": "^4.7.0"
   },
   "repository": {
