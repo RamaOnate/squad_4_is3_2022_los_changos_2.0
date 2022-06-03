@@ -1,4 +1,4 @@
-# node-js-getting-started
+# Modulo de Recursos de PSA (Backend)
 
 A barebones Node.js app using [Express 4](http://expressjs.com/).
 
