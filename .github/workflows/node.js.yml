@@ -45,7 +45,7 @@ jobs:
       uses: supercharge/mongodb-github-action@1.7.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-        mongodb-port: 42069
+        mongodb-port: 27017
     - name: Update npm
       - run: npm install -g npm
     - run: npm ci

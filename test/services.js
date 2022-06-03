@@ -1,26 +1,21 @@
-const { Pool } = require('pg');
+const mongoose = require("mongoose");
 const assert = require('assert');
 
 
-describe('postgresSQL server', () => {
-  let pool;
+describe('MongoDB server', () => {
+  var db;
 
-  before('Mock db connection and load app', async function () {
-    pool = new Pool({
-      database: 'postgres',
-      user: 'postgres',
-      password: 'postgres',
-      host: 'localhost',
-      port: 5432,
-    })    
-  })
-
-  it('should return the result of "SELECT NOW()"', () => {
-    pool.query("SELECT NOW()").then(response=>{console.log(response);assert.equal(response.rowCount, 1);});
+  before('create connection with database', async function () {
+    mongoose.connect('mongodb://localhost:27017/')
+    db = mongoose.connection
   });
 
-  after('Finish Testing', () => {
-    process.exit(0);
+  it('is connected', async function () {
+    
+    db.on('error', (error) => assertEqual(0,1))
+    db.on('open', () => assertEqual(1,1))
+
   });
 
- });
+}
+)
