@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
     try {
         const newLicense = await license.save()
         res.status(201).json(newLicense)
+        console.log(newLicense)
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
