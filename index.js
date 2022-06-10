@@ -18,4 +18,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
 const licenseRouter = require('./routes/licenses')
 app.use('/licenses', licenseRouter)
 
+const hourRouter = require('./routes/hours')
+app.use('/hours', hourRouter)
+
 app.listen(3000, () => console.log('Server Started'))

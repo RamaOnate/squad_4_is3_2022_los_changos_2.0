@@ -1,9 +1,25 @@
 const mongoose = require('mongoose')
 
 const licenseSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
+  licensedPerson: {
+    type: Number,
+    required: true,
+    immutable: true
+  }, 
+  startingDate: {
+    type: Date,
+  },
+  durationDays: {
+    type: Number,
+  },
+  approved: {
+    type: Boolean,
+    default: false
+  },
+  created: {
+    type: Date,
+    default: Date.now,
+    immutable: true
   }
 })
 
