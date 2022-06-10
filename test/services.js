@@ -5,7 +5,7 @@ describe('MongoDB server', () => {
   var db;
 
   before('create connection with database', async function () {
-    mongoose.connect('mongodb://localhost:27017/')
+    mongoose.connect(process.env.DATABASE_URL)
     db = mongoose.connection
   });
 
