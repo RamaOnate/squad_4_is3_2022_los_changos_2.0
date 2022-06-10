@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+app = require('../index.js');
 
 describe('MongoDB server', () => {
   var db;
@@ -10,10 +11,8 @@ describe('MongoDB server', () => {
   });
 
   it('is connected', async function () {
-    
     db.on('error', (error) => assertEqual(0,1))
     db.on('on', () => assertEqual(1,1))
-
   });
 
   after('Finish Testing', () => {
