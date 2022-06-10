@@ -36,4 +36,4 @@ jobs:
     - run: sleep 5
     - run: npm run build --if-present  
     - run: npm test
-    - run: npm cucumber-test
+    - run: npm run cucumber-test
