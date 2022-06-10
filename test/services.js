@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-app = require('../index.js');
 
 describe('MongoDB server', () => {
   var db;
