@@ -84,6 +84,7 @@ class BackendSession {
         }
         
         request(http_options, (err, res, body) => {
+            if(body != undefined){
             this.objectId = body._id
             
             if(res.statusCode < 400){
@@ -104,7 +105,7 @@ class BackendSession {
             } else {
                 this.statusCode = res.statusCode
             }
-
+        }
         })
      
 
