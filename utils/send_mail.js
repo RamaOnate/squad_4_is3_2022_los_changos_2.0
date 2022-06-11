@@ -1,8 +1,10 @@
-require('dotenv').config({path: __dirname + '/.env'})
-
+require('dotenv').config({path: __dirname + '../../.env'})
 const nodemailer = require('nodemailer');
 
-var  transporter = nodemailer.createTransport({
+
+function send_mail(receiver_email){
+
+  var  transporter = nodemailer.createTransport({
     host: "smtp.mailtrap.io",
     port: 2525,
     auth: {
@@ -12,18 +14,21 @@ var  transporter = nodemailer.createTransport({
   });
 
 
-var mailOptions = {
+  var mailOptions = {
     from: '"PSA - CARGA DE HORAS <297e444684-d88506@inbox.mailtrap.io>',
-    to: 'lucasarielsaavedra@hotmail.com',
+    to: receiver_email,
     subject: '[RECORDATORIO] ¡Recuerda subir tus horas!', // Subject line
-    text: 'Hello world ', // plaintext body
+    text: 'Hello world', // plaintext body
     html: '<b>Hello world </b><br> This is the first email sent with Nodemailer in Node.js' // html body
-};
+  };
 
-transporter.sendMail(mailOptions, function(error, info){
+  transporter.sendMail(mailOptions, function(error, info){
     if(error){
         return console.log(error);
     }
-
     console.log('Message sent: ' + info.response);
-});
+  });
+
+}
+
+module.exports = send_mail
