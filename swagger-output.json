@@ -5,10 +5,9 @@
     "version": "1.0.0",
     "description": ""
   },
-  "host": "https://modulo-recursos-psa.herokuapp.com",
+  "host": "modulo-recursos-psa.herokuapp.com:5000",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [
