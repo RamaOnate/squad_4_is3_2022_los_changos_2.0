@@ -16,10 +16,10 @@ class BackendSession {
         }
 
         request(options, (err, res, body) => {
-            this.statusCode = res.statusCode
-
-            // delete the object
-            this.delete(body, typeSent)
+            if(res != undefined){
+                this.statusCode = res.statusCode
+                this.delete(body, typeSent)
+            }
         })
 
     }
