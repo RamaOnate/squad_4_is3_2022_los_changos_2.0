@@ -74,7 +74,7 @@ Then('la respuesta de la modificacion no es exitosa', function(){
     
     // sleep 10 seconds
     setTimeout(() => {
-      assert.equal(this.backendSession.statusCode, 405)
+      assert.equal(this.backendSession.statusCode, 400)
     }, 2500)
   
   })
