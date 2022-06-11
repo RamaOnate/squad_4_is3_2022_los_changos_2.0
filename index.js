@@ -19,4 +19,4 @@ app.use('/licenses', licenseRouter)
 const hourRouter = require('./routes/hours')
 app.use('/hours', hourRouter)
 
-app.listen(3000, () => console.log('Server Started'))
+app.listen(process.env.PORT || 5000, () => console.log('Server Started'))
