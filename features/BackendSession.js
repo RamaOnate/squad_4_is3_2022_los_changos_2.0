@@ -50,23 +50,25 @@ class BackendSession {
         }
         
         request(http_options, (err, res, body) => {
-            
-            this.objectId = body._id
-            
-            if(res.statusCode < 400){
-            // request to delete object
-                let http_options2 = {
-                    url: `${this.url}/${objectType}/${this.objectId}`,
-                    method: 'DELETE',
-                    json: true
-                }
+            if(body != undefined)
+            {
+                this.objectId = body._id
+                
+                if(res.statusCode < 400){
+                // request to delete object
+                    let http_options2 = {
+                        url: `${this.url}/${objectType}/${this.objectId}`,
+                        method: 'DELETE',
+                        json: true
+                    }
 
-                request(http_options2, (err, res, body) => {
+                    request(http_options2, (err, res, body) => {
+                        this.statusCode = res.statusCode
+
+                    })
+                } else {
                     this.statusCode = res.statusCode
-
-                })
-            } else {
-                this.statusCode = res.statusCode
+                }
             }
 
         })
