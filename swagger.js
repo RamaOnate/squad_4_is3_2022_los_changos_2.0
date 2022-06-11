@@ -8,7 +8,7 @@ const doc = {
     },
     host: "modulo-recursos-psa.herokuapp.com:5000",
     basePath: "/",
-    schemes: ['http', 'https'],
+    schemes: ['https'],
     consumes: ['application/json'],
     produces: ['application/json'],
     definitions: {
