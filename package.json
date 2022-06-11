@@ -19,6 +19,8 @@
     "https": "^1.0.0",
     "mocha": "^10.0.0",
     "mongoose": "^6.3.5",
+    "nodemailer": "^6.7.5",
+    "protonmail-api": "^2.2.0",
     "request": "^2.88.2",
     "swagger-autogen": "^2.21.3",
     "swagger-ui-express": "^4.4.0"
