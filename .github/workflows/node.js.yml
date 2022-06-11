@@ -34,6 +34,6 @@ jobs:
     - run: npm run build --if-present  
     - run: sudo docker build -t psa-recursos .
     - run: sudo docker run -d -p 27017:27017 mongo:${{ matrix.mongodb-version }}
-    - run: sudo docker run -d -p 3000:3000 -e DATABASE_URL=$DATABASE_URL psa-recursos
+    - run: sudo docker run -d -p 3000:3000 -e DATABASE_URL="mongodb://localhost:27017/" psa-recursos
     - run: sleep 10
     - run: npm test
