@@ -15,7 +15,7 @@ function send_mail(receiver_email){
 
 
   var mailOptions = {
-    from: '"PSA - CARGA DE HORAS <297e444684-d88506@inbox.mailtrap.io>',
+    from: '"PSA - CARGA DE HORAS <notificaciones@psa.com.ar>',
     to: receiver_email,
     subject: '[RECORDATORIO] ¡Recuerda subir tus horas!', // Subject line
     text: 'Hello world', // plaintext body
