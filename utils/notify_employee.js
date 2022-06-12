@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 
 
 function notify_employee(employee){
-
+  var status;
   var  transporter = nodemailer.createTransport({
     host: "smtp.mailtrap.io",
     port: 2525,
@@ -24,10 +24,15 @@ function notify_employee(employee){
 
   transporter.sendMail(mailOptions, function(error, info){
     if(error){
-        return console.log(error);
+      this.status = false;
     }
-    console.log('Message sent: ' + info.response);
+    else{
+      this.status = true;
+    }
+
+    //console.log('Message sent: ' + info.response);
   });
+  return status
 
 }
 
