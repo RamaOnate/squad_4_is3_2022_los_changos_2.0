@@ -1,11 +1,9 @@
-//require('dotenv').config({path: __dirname + '/.env'})
+require('dotenv').config({path: __dirname + '/.env'})
 
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger-output.json');
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -23,6 +21,8 @@ app.use('/licenses', licenseRouter)
 const hourRouter = require('./routes/hours')
 app.use('/hours', hourRouter)
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.listen(process.env.PORT || 5000, () => console.log('Server Started'))

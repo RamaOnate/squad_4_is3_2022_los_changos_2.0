@@ -1,3 +1,2 @@
-
-const send_mail = require('./utils/send_mail')
-send_mail("lucasarielsaavedra@hotmail.com")
+const notify_employee = require('./utils/notify_employee')
+notify_employee({"legajo":1,"Nombre":"Mario","Apellido":"Mendoza"})
