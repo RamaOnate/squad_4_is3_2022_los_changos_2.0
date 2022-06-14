@@ -20,16 +20,17 @@ router.get('/:id', getHour, (req, res) => {
 // Adding an hour
 router.post('/', async (req, res) => {
     const hour = new Hour({
-        hourCreator: req.body.hourCreator,
+      hourAssignee: req.body.hourAssignee,
         startingHour: req.body.startingHour,
         duration: req.body.duration,
-        projectNumber: req.body.projectNumber,
-        taskNumber: req.body.taskNumber
+        taskCode: req.body.taskCode
     })
+
     try {
         const newHour = await hour.save()
+
         res.status(201).json(newHour)
-        
+
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
@@ -40,6 +41,7 @@ router.delete('/:id', getHour, async (req, res) => {
 
   try {
     await res.hour.remove()
+    
     res.json({ message: 'Hour deleted' })
   } catch (err) {
     res.status(500).json({ message: err.message })

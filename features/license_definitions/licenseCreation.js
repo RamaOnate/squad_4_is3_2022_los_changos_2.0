@@ -5,7 +5,7 @@ const License = require('../../models/license')
 When('el empleado carga una licencia valida', function(){
 
   //send license
-  this.backendSession.send({licensedPerson: 4}, 'licenses')
+  this.backendSession.send({licensedPersonCode: 4}, 'licenses')
 
 })
 

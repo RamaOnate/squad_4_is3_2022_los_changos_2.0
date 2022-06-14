@@ -20,7 +20,7 @@ router.get('/:id', getLicense, (req, res) => {
 // Adding a license
 router.post('/', async (req, res) => {
     const license = new License({
-        licensedPerson: req.body.licensedPerson,
+      licensedPersonCode: req.body.licensedPersonCode,
         startingDate: req.body.startingDate,
         durationDays: req.body.durationDays,
     })

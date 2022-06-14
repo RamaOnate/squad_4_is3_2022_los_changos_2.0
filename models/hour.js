@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const hourSchema = new mongoose.Schema({
-    hourCreator: {
-        type: String,
+    hourAssignee: {
+        type: Number,
         required: true
     },
     startingHour: {
@@ -11,10 +11,7 @@ const hourSchema = new mongoose.Schema({
     duration: {
         type: Number,
     },
-    projectNumber: {
-        type: Number,
-    },
-    taskNumber: {
+    taskCode: {
         type: Number
     },
     created: {

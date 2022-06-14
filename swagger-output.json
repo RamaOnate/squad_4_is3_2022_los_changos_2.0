@@ -305,9 +305,9 @@
           "type": "string",
           "example": ""
         },
-        "approved": {
-          "type": "number",
-          "example": 10
+        "licenseType": {
+          "type": "string",
+          "example": "Salud"
         },
         "created": {
           "type": "number",
@@ -318,7 +318,7 @@
     "Hour": {
       "type": "object",
       "properties": {
-        "hourCreator": {
+        "hourAssignee": {
           "type": "string",
           "example": "Francisco Felici"
         },
@@ -330,11 +330,7 @@
           "type": "string",
           "example": ""
         },
-        "projectNumber": {
-          "type": "number",
-          "example": 10
-        },
-        "taskNumber": {
+        "taskCode": {
           "type": "number",
           "example": 10
         },
