@@ -29,8 +29,6 @@ class BackendSession {
     }
 
     delete(object, typeSent) {
-        console.log('Object a borrar vale: '+ JSON.stringify(object) + 
-        ' y tipo enviado es: ' + typeSent)
         const options = {
             url: `${this.url}/${typeSent}/${object._id}`,
             method: 'DELETE',
