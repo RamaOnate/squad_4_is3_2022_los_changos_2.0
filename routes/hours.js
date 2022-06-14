@@ -15,21 +15,23 @@ router.get('/', async (req, res) => {
 // Getting one hour
 router.get('/:id', getHour, (req, res) => {
   res.json(res.hour)
+  console.log('Consoltado:' + res.hour._id)
 })
 
 // Adding an hour
 router.post('/', async (req, res) => {
     const hour = new Hour({
-        hourCreator: req.body.hourCreator,
+      hourAssignee: req.body.hourAssignee,
         startingHour: req.body.startingHour,
         duration: req.body.duration,
-        projectNumber: req.body.projectNumber,
-        taskNumber: req.body.taskNumber
+        taskCode: req.body.taskCode
     })
+    console.log('Creado:' + hour._id)
     try {
         const newHour = await hour.save()
+        console.log('Guardado:' + newHour._id)
         res.status(201).json(newHour)
-        
+
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
@@ -37,9 +39,10 @@ router.post('/', async (req, res) => {
 
 // Deleting an hour by id
 router.delete('/:id', getHour, async (req, res) => {
-
+  console.log('Eliminado:' + res.hour._id)
   try {
     await res.hour.remove()
+    
     res.json({ message: 'Hour deleted' })
   } catch (err) {
     res.status(500).json({ message: err.message })

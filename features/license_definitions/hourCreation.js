@@ -5,7 +5,7 @@ const { When, Then } = require('@cucumber/cucumber')
 When('el empleado carga una hora valida', function(){
 
   //send hour
-  this.backendSession.send({hourCreator: 4}, 'hours')
+  this.backendSession.send({hourAssignee: 4}, 'hours')
 
 })
 

@@ -4,7 +4,7 @@ const { When, Then } = require('@cucumber/cucumber')
 When('el empleado consulta una licencia valida', function(){
     //create new license
       this.backendSession.get(
-        { licensedPerson: 10, startingDate: new Date(Date.now()), durationDays: 5 },
+        { licensedPersonCode: 10, startingDate: new Date(Date.now()), durationDays: 5 },
         'licenses'
       )
 })

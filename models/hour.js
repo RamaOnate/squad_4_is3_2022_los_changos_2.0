@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const hourSchema = new mongoose.Schema({
     hourAssignee: {
-        type: String,
+        type: Number,
         required: true
     },
     startingHour: {
