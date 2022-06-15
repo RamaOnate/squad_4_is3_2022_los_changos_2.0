@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const licenseSchema = new mongoose.Schema({
-  licensedPerson: {
+  licensedPersonCode: {
     type: Number,
     required: true,
     immutable: true
@@ -12,9 +12,13 @@ const licenseSchema = new mongoose.Schema({
   durationDays: {
     type: Number,
   },
-  approved: {
-    type: Boolean,
-    default: false
+  licenseType: {
+    type: String,
+    enum: [
+      'Salud',
+      'Vacaciones',
+      'Maternidad'
+    ]
   },
   created: {
     type: Date,

@@ -4,8 +4,8 @@ When('el empleado realiza una modificacion valida de una hora', function(){
 
   //send hour
   this.backendSession.modify(
-    {hourCreator: 4, duration: 5}, 
-    {hourCreator: 4, duration: 7},
+    {hourAssignee: 4, duration: 5}, 
+    {hourAssignee: 4, duration: 7},
     'hours')
 })
 
