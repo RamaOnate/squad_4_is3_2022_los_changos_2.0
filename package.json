@@ -7,12 +7,13 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "mocha && npx cucumber-js",
+    "test": "mocha",
     "start": "node index.js",
     "devStart": "nodemon index.js"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
+    "cron": "^2.0.0",
     "cucumber": "^6.0.7",
     "ejs": "^3.1.5",
     "express": "^4.15.2",
@@ -20,6 +21,7 @@
     "https": "^1.0.0",
     "mocha": "^10.0.0",
     "mongoose": "^6.3.5",
+    "nodemailer": "^6.7.5",
     "request": "^2.88.2",
     "swagger-autogen": "^2.21.3",
     "swagger-ui-express": "^4.4.0"
