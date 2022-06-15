@@ -4,19 +4,18 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const notify_employee = require('./utils/notify_employee')
+const notify_employees = require('./utils/notify_employees')
 const CronJob = require('cron').CronJob
-
-//Every day at 18:00, employees that did not upload hours will be notified
-const job = new CronJob('0 18 * * *', () => { 
-    notify_employee({"legajo":1,"Nombre":"Mario","Apellido":"Mendoza"})
-}
-)
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to Database'))
+
+//Every day at 18:00, employees that did not upload hours will be notified
+const job = new CronJob('0 17 * * 1-5', () => { 
+    notify_employees()
+})
 
 app.use(express.json())
 
