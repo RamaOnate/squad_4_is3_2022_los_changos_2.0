@@ -13,8 +13,10 @@ db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to Database'))
 
 //Every day at 18:00, employees that did not upload hours will be notified
-const job = new CronJob('0 17 * * 1-5', () => { 
+const job = new CronJob('0 17 * * 1-5', () => {
+    console.log("Notificando empleados...")
     notify_employees()
+    console.log("Notificaciones enviadas...")
 })
 
 app.use(express.json())

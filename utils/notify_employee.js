@@ -30,7 +30,8 @@ function notify_employee(employee){
       this.status = true;
     }
 
-    //console.log('Message sent: ' + info.response);
+    console.log("ERROR:", error, "INFO", info);
+
   });
   return status
 
