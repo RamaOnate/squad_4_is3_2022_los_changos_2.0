@@ -5,8 +5,8 @@ const hourSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    startingHour: {
-        type: Number,
+    startingDate: {
+        type: Date,
     },
     duration: {
         type: Number,
