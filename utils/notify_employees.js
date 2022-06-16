@@ -1,4 +1,4 @@
-require('dotenv').config({path: __dirname + '../../.env'})
+//require('dotenv').config({path: __dirname + '../../.env'})
 const notify_employee = require('./notify_employee')
 const HourModel = require('../models/hour')
 const request = require('request')
