@@ -30,6 +30,9 @@ app.use('/licenses', licenseRouter)
 const hourRouter = require('./routes/hours')
 app.use('/hours', hourRouter)
 
+const employeesRouter = require('./routes/employees')
+app.use('/employees', employeesRouter)
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger-output.json');
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
