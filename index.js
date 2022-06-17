@@ -6,7 +6,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const CronJob = require('cron').CronJob
 
-const job = new CronJob('30 0 * * 1-5', () => {
+//This is configured with UTC. In Argentina will be
+//17 PM.
+const job = new CronJob('0 21 * * 1-5', () => {
     console.log("Notificando empleados...")
     require("./cron/notify_employees_by_email.js")
     console.log("Notificaciones enviadas...")
