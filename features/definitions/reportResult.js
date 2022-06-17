@@ -2,14 +2,14 @@ const assert = require('assert');
 const { When, Then } = require('@cucumber/cucumber')
 const License = require('../../models/license')
 
-When('el empleado genera un reporte de una persona', function(){
+Then('los datos de la persona se cargan', function(){
 
   //send license
   this.backendSession.send({licensedPersonCode: 4}, 'licenses')
 
 })
 
-When('el empleado genera un reporte de una persona no registrada', function(){
+Then('sale error de carga de datos', function(){
 
   //create new license
   let license = new License({})

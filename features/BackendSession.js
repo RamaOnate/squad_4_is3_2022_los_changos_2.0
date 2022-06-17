@@ -8,10 +8,7 @@ class BackendSession {
         else{
             this.url = `http://${arguments[0]}:${arguments[1]}`            
         }
-
-        console.log(this.url)
-        this.statusCode = 0
-        
+        this.statusCode = 0        
     }
 
     send(bodyObject, typeSent) {
