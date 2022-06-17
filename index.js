@@ -1,9 +1,16 @@
-//require('dotenv').config({path: __dirname + '/.env'})
+require('dotenv').config({path: __dirname + '/.env'})
 
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const CronJob = require('cron').CronJob
+
+const job = new CronJob('15 9 * * 1-5', () => {
+    console.log("Notificando empleados...")
+    require("./cron/notify_employees_by_email.js")
+    console.log("Notificaciones enviadas...")
+})
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -29,4 +36,5 @@ const swaggerDocument = require('./swagger-output.json');
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 console.log("Server listening...")
+job.start()
 app.listen(process.env.PORT || 5000, () => console.log('Server Started'))

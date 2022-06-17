@@ -1,8 +1,9 @@
-//require('dotenv').config({path: __dirname + '/../.env'})
+require('dotenv').config({path: __dirname + '/../.env'})
 const notify_employee = require('../utils/notify_employee')
 const HourModel = require('../models/hour')
 const request = require('request')
 const mongoose = require('mongoose');
+
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
