@@ -1,4 +1,4 @@
-//require('dotenv').config({path: __dirname + '/.env'})
+require('dotenv').config({path: __dirname + '/.env'})
 
 const express = require('express');
 const app = express();
@@ -29,6 +29,9 @@ app.use('/licenses', licenseRouter)
 
 const hourRouter = require('./routes/hours')
 app.use('/hours', hourRouter)
+
+const reportRouter = require('./routes/reports')
+app.use('/reports', reportRouter)
 
 const employeesRouter = require('./routes/employees')
 app.use('/employees', employeesRouter)

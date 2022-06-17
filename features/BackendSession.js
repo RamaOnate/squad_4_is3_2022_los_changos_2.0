@@ -10,7 +10,7 @@ class BackendSession {
         }
         this.statusCode = 0        
     }
-
+    
     send(bodyObject, typeSent) {
         
         const options = {
@@ -154,7 +154,6 @@ class BackendSession {
 
     }
 
-
 }
 
-    module.exports = BackendSession
+module.exports = BackendSession

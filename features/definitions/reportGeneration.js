@@ -3,17 +3,9 @@ const { When, Then } = require('@cucumber/cucumber')
 const License = require('../../models/license')
 
 When('el empleado carga una licencia valida', function(){
-
-  //send license
-  this.backendSession.send({licensedPersonCode: 4}, 'licenses')
-
+  this.backendSession.get({employeeId: 20}, 'reports')
 })
 
 When('el empleado carga una licencia invalida', function(){
-
-  //create new license
-  let license = new License({})
-
-  //send license
-  this.backendSession.send(license, 'licenses')
+  this.backendSession.get({employeeId: 99}, 'reports')
 })
