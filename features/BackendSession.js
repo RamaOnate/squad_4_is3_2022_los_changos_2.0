@@ -1,9 +1,17 @@
 const request = require('request')
 
 class BackendSession {
-    constructor(host, port) {
-        this.url = `http://${host}:${port}`
+    constructor() {
+        if(arguments.length == 1){
+            this.url = arguments[0]
+        }
+        else{
+            this.url = `http://${arguments[0]}:${arguments[1]}`            
+        }
+
+        console.log(this.url)
         this.statusCode = 0
+        
     }
 
     send(bodyObject, typeSent) {

@@ -13,7 +13,6 @@ Then('la respuesta de carga es exitosa', function(){
 Then('la respuesta de carga no es exitosa', function(){
   // assert status code returned is 201
   
-  // sleep 10 seconds
   setTimeout(() => {
     assert.equal(this.backendSession.statusCode, 400)
   }, 2500)
@@ -23,7 +22,6 @@ Then('la respuesta de carga no es exitosa', function(){
 Then('la respuesta de la eliminacion es exitosa', function(){
     // assert status code returned is 200
     
-    // sleep 10 seconds
     setTimeout(() => {
       assert.equal(this.backendSession.statusCode, 200)
     }, 2500);
@@ -33,7 +31,6 @@ Then('la respuesta de la eliminacion es exitosa', function(){
 Then('la respuesta de la eliminacion no es exitosa', function(){
     // assert status code returned is 400
     
-    // sleep 10 seconds
     setTimeout(() => {
       assert.equal(this.backendSession.statusCode, 400)
     }, 2500);
@@ -43,7 +40,6 @@ Then('la respuesta de la eliminacion no es exitosa', function(){
 Then('la respuesta de la consulta es exitosa', function(){
     // assert status code returned is 200
     
-    // sleep 10 seconds
     setTimeout(() => {
       assert.equal(this.backendSession.statusCode, 200)
     }, 2500);
@@ -53,7 +49,6 @@ Then('la respuesta de la consulta es exitosa', function(){
 Then('la respuesta de la consulta no es exitosa', function(){
     // assert status code returned is 400
     
-    // sleep 10 seconds
     setTimeout(() => {
       assert.equal(this.backendSession.statusCode, 400)
     }, 2500);
@@ -72,7 +67,6 @@ Then('la respuesta de la modificacion es exitosa', function(){
 Then('la respuesta de la modificacion no es exitosa', function(){
     // assert status code returned is 201
     
-    // sleep 10 seconds
     setTimeout(() => {
       assert.equal(this.backendSession.statusCode, 400)
     }, 2500)
