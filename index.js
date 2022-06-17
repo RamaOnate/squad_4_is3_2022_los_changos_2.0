@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const CronJob = require('cron').CronJob
 
-const job = new CronJob('17 9 * * 1-5', () => {
+const job = new CronJob('17 21 * * 1-5', () => {
     console.log("Notificando empleados...")
     require("./cron/notify_employees_by_email.js")
     console.log("Notificaciones enviadas...")
