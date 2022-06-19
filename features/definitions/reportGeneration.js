@@ -1,11 +1,17 @@
-const assert = require('assert');
-const { When, Then } = require('@cucumber/cucumber')
-const License = require('../../models/license')
+const { When } = require('@cucumber/cucumber')
 
-When('el empleado carga una licencia valida', function(){
-  this.backendSession.get({employeeId: 20}, 'reports')
+When('el empleado genera un reporte de una persona', function(){
+  this.backendSession.get({}, 'reports/person/3')
 })
 
-When('el empleado carga una licencia invalida', function(){
-  this.backendSession.get({employeeId: 99}, 'reports')
+When('el empleado genera un reporte de una persona no existente', function(){
+  this.backendSession.get({}, 'reports/person/100')
+})
+
+When('el empleado genera un reporte de horas de un proyecto existente', function(){
+  this.backendSession.get({}, 'reports/proyect/8')
+})
+
+When('el empleado genera un reporte de horas de un proyecto no existente', function(){
+  this.backendSession.get({}, 'reports/proyect/9')
 })
