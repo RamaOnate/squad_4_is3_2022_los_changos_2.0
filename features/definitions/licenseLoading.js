@@ -7,7 +7,7 @@ When('el empleado consulta una licencia valida', function(){
         'licenses'
       )
 })
-  
+
 When('el empleado consulta una licencia invalida', function(){
   //create new license
     this.backendSession.get({}, 'licenses')
