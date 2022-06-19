@@ -57,13 +57,14 @@ router.get('/project/:id', async (req, res) => {
     request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/projects', method: 'GET', json: true }, async (err, res2, body) => {
       
       // return the projects that have the worker id passed as parameter
-      projects = body.filter(project => project.projectAssignees.includes(req.params.id))
+
+      projects = body.filter(project => project._id == req.params.id)
 
       if (projects.length > 0) {
         res.status(200).json(projects)
       }
       else {
-        res.status(500).json({ message: "Employee doesnt exist" })
+        res.status(500).json({ message: "Proyect doesn't exist" })
       }
     })
   } catch (err) {
