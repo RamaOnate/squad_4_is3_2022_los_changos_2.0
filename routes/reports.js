@@ -17,7 +17,7 @@ function pick_employee_by_id(employees, id) {
 router.get('/person/:id', async (req, res) => {
   try {
 
-    request({ url: process.env.RESOURCES_DATABASE, method: 'GET', json: true }, async (err, res2, body) => {
+    request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/projects', method: 'GET', json: true }, async (err, res2, body) => {
       employee_report = pick_employee_by_id(body, req.params.id)
 
       if (employee_report == undefined) {
@@ -46,6 +46,26 @@ router.get('/person/:id', async (req, res) => {
       }
     })
 
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+router.get('/project/:id', async (req, res) => {
+  try {
+  
+    request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/projects', method: 'GET', json: true }, async (err, res2, body) => {
+      
+      // return the projects that have the worker id passed as parameter
+      projects = body.filter(project => project.projectAssignees.includes(req.params.id))
+
+      if (projects.length > 0) {
+        res.status(200).json(projects)
+      }
+      else {
+        res.status(500).json({ message: "Employee doesnt exist" })
+      }
+    })
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
