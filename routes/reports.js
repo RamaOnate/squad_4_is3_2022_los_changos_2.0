@@ -21,7 +21,7 @@ router.get('/person/:id', async (req, res) => {
       employee_report = pick_employee_by_id(body, req.params.id)
 
       if (employee_report == undefined) {
-        res.status(500).json({ message: "Employee doesnt exist" })
+        res.status(500).json({ message: "Employee doesn't exist" })
       }
       else {
         hour = await Hour.find({ hourAssignee: req.params.id })

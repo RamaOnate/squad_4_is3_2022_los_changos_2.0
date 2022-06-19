@@ -1,5 +1,4 @@
-const assert = require('assert');
-const { When, Then } = require('@cucumber/cucumber')
+const { When } = require('@cucumber/cucumber')
 
 When('el empleado realiza una modificacion valida de una licencia', function(){
 
