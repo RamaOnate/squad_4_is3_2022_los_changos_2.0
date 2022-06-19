@@ -19,6 +19,13 @@ const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to Database'))
 
+app.use((req, res, next ) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    res.header('Access-Control-Allow-Methods', 'PUT, PATCH, POST, DELETE, GET, OPTIONS')
+    next()
+})
+
 app.use(express.json())
 
 app.use(bodyParser.json())
