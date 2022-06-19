@@ -30,10 +30,10 @@ router.get('/person/:id', async (req, res) => {
           result = hour.map(anHour => anHour.duration);
           number_of_hours_worked = result.reduce((previousHour, currentHour) => previousHour + currentHour, 0);
 
-          if(!isNaN(number_of_hours_worked)){
+          if (!isNaN(number_of_hours_worked)) {
             employee_report.total_hours_worked = number_of_hours_worked
           }
-          else{
+          else {
             employee_report.total_hours_worked = 0
           }
 
@@ -53,15 +53,23 @@ router.get('/person/:id', async (req, res) => {
 
 router.get('/project/:id', async (req, res) => {
   try {
-  
+
     request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/projects', method: 'GET', json: true }, async (err, res2, body) => {
-      
+
       // return the projects that have the worker id passed as parameter
 
-      projects = body.filter(project => project._id == req.params.id)
+      projects = body.filter(project => project.code == req.params.id)
+      project_report = {}
+      project_report.total_hours_worked = 0
 
-      if (projects.length > 0) {
-        res.status(200).json(projects)
+      if (projects.length == 1) {
+        tasks = projects[0].tasks
+        tasks.forEach(async (task) => {
+          hours = await Hour.find({ taskCode: task.code })
+          hours.forEach(hour => project_report.total_hours_worked = project_report.total_hours_worked + hour.duration)
+        })
+
+        res.status(200).json(project_report)
       }
       else {
         res.status(500).json({ message: "Proyect doesn't exist" })
