@@ -17,7 +17,8 @@ function pick_employee_by_id(employees, id) {
 router.get('/person/:id', async (req, res) => {
   try {
 
-    request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/projects', method: 'GET', json: true }, async (err, res2, body) => {
+    request({ url: process.env.RESOURCES_DATABASE, method: 'GET', json: true }, async (err, res2, body) => {
+      console.log(body)
       employee_report = pick_employee_by_id(body, req.params.id)
 
       if (employee_report == undefined) {
