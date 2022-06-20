@@ -7,12 +7,15 @@ const hourSchema = new mongoose.Schema({
     },
     startingDate: {
         type: Date,
+        required: true
     },
     duration: {
         type: Number,
+        required: true
     },
     taskCode: {
-        type: Number
+        type: Number,
+        required: true
     },
     created: {
         type: Date,

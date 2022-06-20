@@ -31,9 +31,10 @@ router.get('/:id', getHour, (req, res) => {
 
 // Adding an hour
 router.post('/', async (req, res) => {
+    console.log(req.body)
     const hour = new Hour({
       hourAssignee: req.body.hourAssignee,
-      startingHour: req.body.startingHour,
+      startingDate: req.body.startingDate,
       duration: req.body.duration,
       taskCode: req.body.taskCode
     })
@@ -46,6 +47,25 @@ router.post('/', async (req, res) => {
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
+})
+
+// Adding an hour
+router.post('/filterByDate', async (req, res) => {
+
+  try {
+
+      const hours = await Hour.find({
+        hourAssignee: req.body.hourAssignee,
+        startingDate: {
+          $gte: req.body.startDate,
+          $lte: req.body.finalDate}
+        })
+
+      res.status(201).json(hours)
+
+  } catch (err) {
+      res.status(400).json({ message: err.message })
+  }
 })
 
 // Deleting an hour by id
