@@ -18,7 +18,6 @@ router.get('/person/:id', async (req, res) => {
   try {
 
     request({ url: process.env.RESOURCES_DATABASE, method: 'GET', json: true }, async (err, res2, body) => {
-      console.log(body)
       employee_report = pick_employee_by_id(body, req.params.id)
 
       if (employee_report == undefined) {
@@ -59,16 +58,20 @@ router.get('/project/:id', async (req, res) => {
 
       // return the projects that have the worker id passed as parameter
 
-      projects = body.filter(project => project.code == req.params.id)
-      project_report = {}
-      project_report.total_hours_worked = 0
+      projects = body.filter(project => project._id == req.params.id)
 
       if (projects.length == 1) {
-        tasks = projects[0].tasks
-        tasks.forEach(async (task) => {
-          hours = await Hour.find({ taskCode: task.code })
-          hours.forEach(hour => project_report.total_hours_worked = project_report.total_hours_worked + hour.duration)
-        })
+        project_report = projects[0]
+        project_report.total_hours_worked = 0
+        tasks = project_report.tasks
+        
+        for(task_index = 0; task_index<tasks.length; task_index++){
+          task_hours = 0
+          hours = await Hour.find({ taskCode: tasks[task_index].code })
+          hours.forEach(hour => task_hours = task_hours + hour.duration)
+          project_report.total_hours_worked = project_report.total_hours_worked + task_hours
+          project_report.tasks[task_index].hours_worked = task_hours          
+        }
 
         res.status(200).json(project_report)
       }
