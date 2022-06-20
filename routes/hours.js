@@ -8,7 +8,26 @@ const request = require('request')
 router.get('/', server_log, async (req, res) => {
   try {
     const hour = await Hour.find()
-    res.json(hour)
+
+    request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/tasks', method: 'GET', json: true }, (err, res2, body) => {
+      
+      for(i = 0; i < hour.length; i++){
+        selected_task = body.filter(task => task.code == hour[i].taskCode)
+        hour[i] = hour[i].toObject()
+        if(selected_task.length == 0){
+          hour[i].task = "Task not available"
+        }
+        else{
+          hour[i].task = selected_task[0]
+        }
+        delete hour[i].taskCode
+
+      }
+
+      res.json(hour)
+
+    })
+
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
