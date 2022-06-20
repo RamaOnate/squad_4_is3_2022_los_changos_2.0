@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const request = require('request')
 const Hour = require('../models/hour')
+const server_log = require('../utils/server_log')
 
 function pick_employee_by_id(employees, id) {
 
@@ -14,7 +15,7 @@ function pick_employee_by_id(employees, id) {
   return undefined
 }
 
-router.get('/person/:id', async (req, res) => {
+router.get('/person/:id', server_log, async (req, res) => {
   try {
 
     request({ url: process.env.RESOURCES_DATABASE, method: 'GET', json: true }, async (err, res2, body) => {
@@ -51,7 +52,7 @@ router.get('/person/:id', async (req, res) => {
   }
 })
 
-router.get('/project/:id', async (req, res) => {
+router.get('/project/:id', server_log, async (req, res) => {
   try {
 
     request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/projects', method: 'GET', json: true }, async (err, res2, body) => {

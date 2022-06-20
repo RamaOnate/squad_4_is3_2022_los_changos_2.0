@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const License = require('../models/license')
+const server_log = require('../utils/server_log')
 
 // Getting all licenses
-router.get('/', async (req, res) => {
+router.get('/', server_log, async (req, res) => {
   try {
     const license = await License.find()
     res.json(license)
@@ -13,12 +14,12 @@ router.get('/', async (req, res) => {
 })
 
 // Getting one license
-router.get('/:id', getLicense, (req, res) => {
+router.get('/:id', server_log, getLicense, (req, res) => {
   res.status(200).json(res.license)
 })
 
 // Adding a license
-router.post('/', async (req, res) => {
+router.post('/', server_log, async (req, res) => {
     const license = new License({
       licensedPersonCode: req.body.licensedPersonCode,
         startingDate: req.body.startingDate,
@@ -34,7 +35,7 @@ router.post('/', async (req, res) => {
 })
 
 // Deleting a license by id
-router.delete('/:id', getLicense, async (req, res) => {
+router.delete('/:id', server_log, getLicense, async (req, res) => {
   
   try {
     await res.license.remove()
@@ -45,7 +46,7 @@ router.delete('/:id', getLicense, async (req, res) => {
 })
 
 // Updating a license by id
-router.patch('/:id', getLicense, async (req, res) => {
+router.patch('/:id', server_log, getLicense, async (req, res) => {
   if (req.body.licensedPerson != null) {
     res.license.startingDate = req.body.startingDate,
     res.license.durationDays = req.body.durationDays,
