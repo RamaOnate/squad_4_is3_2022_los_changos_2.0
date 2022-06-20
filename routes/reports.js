@@ -58,7 +58,7 @@ router.get('/project/:id', async (req, res) => {
 
       // return the projects that have the worker id passed as parameter
 
-      projects = body.filter(project => project._id == req.params.id)
+      projects = body.filter(project => project.code == req.params.id)
 
       if (projects.length == 1) {
         project_report = projects[0]
