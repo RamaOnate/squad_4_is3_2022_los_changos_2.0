@@ -1,8 +1,6 @@
 function server_log(req, res, next){
-    console.log("RES:", res)
-    console.log("REQ:", req)
+    console.log(req.body)
     next()
   }
   
 module.exports = server_log
-  
