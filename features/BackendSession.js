@@ -1,11 +1,16 @@
 const request = require('request')
 
 class BackendSession {
-    constructor(host, port) {
-        this.url = `http://${host}:${port}`
-        this.statusCode = 0
+    constructor() {
+        if(arguments.length == 1){
+            this.url = arguments[0]
+        }
+        else{
+            this.url = `http://${arguments[0]}:${arguments[1]}`            
+        }
+        this.statusCode = 0        
     }
-
+    
     send(bodyObject, typeSent) {
         
         const options = {
@@ -149,7 +154,6 @@ class BackendSession {
 
     }
 
-
 }
 
-    module.exports = BackendSession
+module.exports = BackendSession

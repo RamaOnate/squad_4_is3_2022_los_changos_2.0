@@ -1,15 +1,17 @@
 const { When } = require('@cucumber/cucumber')
 
-When('el empleado consulta una licencia valida', function(){
+When('el empleado elimina una licencia valida', function(){
     //create new license
-      this.backendSession.get(
+      this.backendSession.deleteNew(
         { licensedPersonCode: 10, startingDate: new Date(Date.now()), durationDays: 5 },
         'licenses'
       )
 })
   
-When('el empleado consulta una licencia invalida', function(){
+
+
+When('el empleado elimina una licencia invalida', function(){
   //create new license
-    this.backendSession.get({}, 'licenses')
+    this.backendSession.deleteNew({}, 'licenses')
 })
 

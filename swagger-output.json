@@ -39,7 +39,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "licensedPerson": {
+                "licensedPersonCode": {
                   "example": "any"
                 },
                 "startingDate": {
@@ -176,7 +176,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "hourCreator": {
+                "hourAssignee": {
                   "example": "any"
                 },
                 "startingHour": {
@@ -185,10 +185,7 @@
                 "duration": {
                   "example": "any"
                 },
-                "projectNumber": {
-                  "example": "any"
-                },
-                "taskNumber": {
+                "taskCode": {
                   "example": "any"
                 }
               }
@@ -287,6 +284,62 @@
           }
         }
       }
+    },
+    "/reports/person/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/reports/project/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/employees/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -305,9 +358,9 @@
           "type": "string",
           "example": ""
         },
-        "licenseType": {
-          "type": "string",
-          "example": "Salud"
+        "approved": {
+          "type": "number",
+          "example": 10
         },
         "created": {
           "type": "number",
@@ -318,7 +371,7 @@
     "Hour": {
       "type": "object",
       "properties": {
-        "hourAssignee": {
+        "hourCreator": {
           "type": "string",
           "example": "Francisco Felici"
         },
@@ -330,7 +383,11 @@
           "type": "string",
           "example": ""
         },
-        "taskCode": {
+        "projectNumber": {
+          "type": "number",
+          "example": 10
+        },
+        "taskNumber": {
           "type": "number",
           "example": 10
         },

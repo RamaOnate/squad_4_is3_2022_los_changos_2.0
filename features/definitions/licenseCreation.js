@@ -1,5 +1,4 @@
-const assert = require('assert');
-const { When, Then } = require('@cucumber/cucumber')
+const { When } = require('@cucumber/cucumber')
 const License = require('../../models/license')
 
 When('el empleado carga una licencia valida', function(){

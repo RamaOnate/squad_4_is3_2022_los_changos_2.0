@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Hour = require('../models/hour')
+const request = require('request')
 
 // Getting all hours
 router.get('/', async (req, res) => {
@@ -14,16 +15,27 @@ router.get('/', async (req, res) => {
 
 // Getting one hour
 router.get('/:id', getHour, (req, res) => {
-  res.json(res.hour)
+
+  request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/tasks', method: 'GET', json: true }, (err, res2, body) => {
+    selected_task = body.filter(task => task.code == res.hour.taskCode)
+    if(selected_task.length == 0){
+      res.hour.task = "Task not available"
+    }
+    else{
+      res.hour.task = selected_task[0]
+    }
+    delete res.hour.taskCode
+    res.json(res.hour)
+  })
 })
 
 // Adding an hour
 router.post('/', async (req, res) => {
     const hour = new Hour({
       hourAssignee: req.body.hourAssignee,
-        startingHour: req.body.startingHour,
-        duration: req.body.duration,
-        taskCode: req.body.taskCode
+      startingHour: req.body.startingHour,
+      duration: req.body.duration,
+      taskCode: req.body.taskCode
     })
 
     try {
@@ -72,8 +84,9 @@ async function getHour(req, res, next) {
     return res.status(500).json({ message: err.message })
   }
 
-  res.hour = hour
+  res.hour = hour.toObject()
   next()
 }
+
 
 module.exports = router
