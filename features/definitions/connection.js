@@ -1,4 +1,4 @@
-require('dotenv').config({path: __dirname + '../../../.env'})
+//require('dotenv').config({path: __dirname + '../../../.env'})
 const { Given } = require('@cucumber/cucumber')
 const BackendSession = require('../BackendSession');
 
