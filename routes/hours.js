@@ -69,7 +69,32 @@ router.post('/', server_log, async (req, res) => {
     }
 })
 
-// Adding an hour
+router.post('/bulk', server_log, async (req, res) => {
+  console.log(req.body)
+
+  try {
+    for(i=0; i<req.body.length;i++){
+
+      hour = new Hour({
+        hourAssignee: req.body[i].hourAssignee,
+        startingDate: req.body[i].startingDate,
+        duration: req.body[i].duration,
+        taskCode: req.body[i].taskCode
+      })
+
+      const newHour = await hour.save()
+  
+    }
+
+      res.status(201).json(newHour)
+
+  } catch (err) {
+      res.status(400).json({ message: err.message })
+  }
+})
+
+
+// Filter hour by date
 router.post('/filterByDate', server_log, async (req, res) => {
 
   try {
