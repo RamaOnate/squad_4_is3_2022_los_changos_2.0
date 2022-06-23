@@ -24,6 +24,11 @@ router.get('/', server_log, async (req, res) => {
 
       }
 
+      // sort hour by creation date
+      hour.sort((a, b) => {
+        return new Date(a.startingDate) - new Date(b.startingDate)
+      })
+
       res.json(hour)
 
     })

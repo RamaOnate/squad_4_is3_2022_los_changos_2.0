@@ -7,6 +7,12 @@ const server_log = require('../utils/server_log')
 router.get('/', server_log, async (req, res) => {
   try {
     const license = await License.find()
+
+    // sort licenses by startingDate
+    license.sort((a, b) => {
+      return new Date(a.startingDate) - new Date(b.startingDate)
+    })
+
     res.json(license)
   } catch (err) {
     res.status(500).json({ message: err.message })
