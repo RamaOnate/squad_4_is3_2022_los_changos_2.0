@@ -55,7 +55,7 @@ router.get('/person/:id', server_log, async (req, res) => {
 router.get('/project/:id', server_log, async (req, res) => {
   try {
 
-    request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/projects', method: 'GET', json: true }, async (err, res2, body) => {
+    request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/projects/withTasks', method: 'GET', json: true }, async (err, res2, body) => {
 
       // return the projects that have the worker id passed as parameter
 
@@ -65,7 +65,7 @@ router.get('/project/:id', server_log, async (req, res) => {
         project_report = projects[0]
         project_report.total_hours_worked = 0
         tasks = project_report.tasks
-        
+
         for(task_index = 0; task_index<tasks.length; task_index++){
           task_hours = 0
           hours = await Hour.find({ taskCode: tasks[task_index].code })
