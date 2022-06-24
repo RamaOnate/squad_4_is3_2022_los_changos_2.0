@@ -8,7 +8,7 @@ const CronJob = require('cron').CronJob
 
 //This is configured with UTC. In Argentina will be
 //17 PM.
-const job = new CronJob('0 21 * * 1-5', () => {
+const job = new CronJob('5 20 * * 1-5', () => {
     console.log("Notificando empleados...")
     require("./cron/notify_employees_by_email.js")
     console.log("Notificaciones enviadas...")
