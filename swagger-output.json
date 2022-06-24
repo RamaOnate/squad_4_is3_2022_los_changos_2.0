@@ -47,6 +47,9 @@
                 },
                 "durationDays": {
                   "example": "any"
+                },
+                "licenseType": {
+                  "example": "any"
                 }
               }
             }
@@ -285,6 +288,20 @@
         }
       }
     },
+    "/hours/bulk": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/hours/filterByDate": {
       "post": {
         "description": "",
@@ -302,6 +319,33 @@
                   "example": "any"
                 },
                 "finalDate": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/hours/employeeHistorial": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hourAssignee": {
                   "example": "any"
                 }
               }
