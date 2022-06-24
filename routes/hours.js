@@ -133,6 +133,37 @@ router.post('/filterByDate', server_log, async (req, res) => {
   }
 })
 
+router.post('/employeeHistorial', server_log, async (req, res) => {
+
+  try {
+
+      const hours = await Hour.find({
+        hourAssignee: req.body.hourAssignee
+      })
+
+      console.log('Hours vale' + hours)
+      request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/tasks', method: 'GET', json: true }, (err, res2, body) => {
+
+        for (i = 0; i < hours.length; i++) {
+          selected_task = body.filter(task => task.code == hours[i].taskCode)
+          hours[i] = hours[i].toObject()
+          if (selected_task.length == 0) {
+            hours[i].task = "Task not available"
+          }
+          else {
+            hours[i].task = selected_task[0]
+          }
+          delete hours[i].taskCode
+        }
+
+        res.status(201).json(hours)
+      })
+
+  } catch (err) {
+    res.status(400).json({ message: err.message })
+  }
+})
+
 // Deleting an hour by id
 router.delete('/:id', server_log, getHour, async (req, res) => {
 
