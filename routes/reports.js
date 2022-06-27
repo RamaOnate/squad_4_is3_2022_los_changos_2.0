@@ -78,27 +78,6 @@ router.get('/person/:id', server_log, async (req, res) => {
   }
 })
 
-router.get('/person/file/csv/:id', server_log, async (req, res) => {
-  try {
-
-    request({ url: process.env.RESOURCES_DATABASE, method: 'GET', json: true }, async (err, res2, body) => {
-      employee = pick_employee_by_id(body, req.params.id)
-
-      if (employee == undefined) {
-        res.status(500).json({ message: "Employee doesn't exist" })
-      }
-      else {
-        json_report = await create_person_report(employee)
-        res.attachment('filename.csv');
-        res.status(200).send(json2csv(json_report));
-      }
-    })
-
-  } catch (err) {
-    res.status(500).json({ message: err.message })
-  }
-})
-
 router.get('/project/:id', server_log, async (req, res) => {
   try {
 
@@ -111,29 +90,6 @@ router.get('/project/:id', server_log, async (req, res) => {
       if (projects.length == 1) {
         json_report = await create_proyect_report(projects[0])
         res.status(200).json(json_report)
-      }
-      else {
-        res.status(500).json({ message: "Project doesn't exist" })
-      }
-    })
-  } catch (err) {
-    res.status(500).json({ message: err.message })
-  }
-})
-
-router.get('/project/file/csv/:id', server_log, async (req, res) => {
-  try {
-
-    request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/projects/withTasks', method: 'GET', json: true }, async (err, res2, body) => {
-
-      // return the projects that have the worker id passed as parameter
-
-      projects = body.filter(project => project.code == req.params.id)
-
-      if (projects.length == 1) {
-        json_report = await create_proyect_report(projects[0])
-        res.attachment('report.csv');
-        res.status(200).send(json2csv(json_report.tasks));
       }
       else {
         res.status(500).json({ message: "Project doesn't exist" })
