@@ -15,7 +15,13 @@ router.get('/', server_log, async (req, res) => {
         selected_task = body.filter(task => task.code == hour[i].taskCode)
         hour[i] = hour[i].toObject()
         if(selected_task.length == 0){
-          hour[i].task = "Task not available"
+          hour[i].task = {
+            "priority":0,
+            "name":"N/A",
+            "description":"Tarea no encontrada",
+            "code":0,
+            "projectCode": 0
+        }
         }
         else{
           hour[i].task = selected_task[0]
@@ -44,7 +50,13 @@ router.get('/:id', server_log, getHour, (req, res) => {
   request({ url: 'https://modulo-proyectos-psa-2022.herokuapp.com/tasks', method: 'GET', json: true }, (err, res2, body) => {
     selected_task = body.filter(task => task.code == res.hour.taskCode)
     if(selected_task.length == 0){
-      res.hour.task = "Task not available"
+      res.hour.task = {
+            "priority":0,
+            "name":"N/A",
+            "description":"Tarea no encontrada",
+            "code":0,
+            "projectCode": 0
+        }
     }
     else{
       res.hour.task = selected_task[0]
@@ -117,7 +129,13 @@ router.post('/filterByDate', server_log, async (req, res) => {
           selected_task = body.filter(task => task.code == hours[i].taskCode)
           hours[i] = hours[i].toObject()
           if(selected_task.length == 0){
-            hours[i].task = "Task not available"
+            hours[i].task = {
+            "priority":0,
+            "name":"N/A",
+            "description":"Tarea no encontrada",
+            "code":0,
+            "projectCode": 0
+        }
           }
           else{
             hours[i].task = selected_task[0]
@@ -148,7 +166,13 @@ router.post('/employeeHistorial', server_log, async (req, res) => {
           selected_task = body.filter(task => task.code == hours[i].taskCode)
           hours[i] = hours[i].toObject()
           if (selected_task.length == 0) {
-            hours[i].task = "Task not available"
+            hours[i].task = {
+            "priority":0,
+            "name":"N/A",
+            "description":"Tarea no encontrada",
+            "code":0,
+            "projectCode": 0
+        }
           }
           else {
             hours[i].task = selected_task[0]
